@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/config/config.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -74,7 +75,7 @@ class _HomeScreenView extends StatelessWidget {
   }
 }
 
-class _CustomListTile extends StatelessWidget {
+class _CustomListTile extends ConsumerWidget {
   final String title;
   final String subTitle;
   final String location;
@@ -86,12 +87,12 @@ class _CustomListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       title: Text(title),
       subtitle: Text(subTitle),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      onTap: () => context.push(location),
+      onTap: () => ref.read(appRouterProvider).push(location),
     );
   }
 }
