@@ -21,3 +21,10 @@ class PokemonId extends _$PokemonId {
     state > 1 ? state-- : 1;
   }
 }
+
+@Riverpod(keepAlive: true)
+Future<String> pokemonById (PokemonByIdRef ref, int id) async  {
+  final pokemName = await PokemonInformation.getPokemonName(id);
+  return pokemName;
+}
+
